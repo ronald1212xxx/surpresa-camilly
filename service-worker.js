@@ -1,6 +1,6 @@
 const CACHE_NAME = "surpresa-camilly-v1";
 const APP_FILES = [
-  "./surpresa_camilly.html",
+  "./index.html",
   "./manifest.webmanifest",
   "./icons/app-icon-192.png",
   "./icons/app-icon-512.png",

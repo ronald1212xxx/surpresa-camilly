@@ -1,10 +1,10 @@
 {
-  "id": "./surpresa_camilly.html",
+  "id": "./index.html",
   "name": "Uma surpresa para Camilly",
   "short_name": "Para Camilly",
   "description": "Uma carta romântica e um álbum de lembranças para Camilly.",
   "lang": "pt-BR",
-  "start_url": "./surpresa_camilly.html",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
