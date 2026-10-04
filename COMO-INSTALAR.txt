@@ -1,0 +1,26 @@
+SURPRESA PARA CAMILLY — APP PARA CELULAR
+
+O pacote vem com a página, as dez fotos e os arquivos para instalar como PWA.
+Não precisa instalar um APK.
+
+IMPORTANTE: para instalar no celular e guardar as fotos para uso offline, a
+página precisa estar publicada em uma hospedagem HTTPS. Abrir o HTML direto do
+arquivo ZIP não habilita a instalação nem o cache offline.
+
+ANDROID
+1. Publique o conteúdo deste pacote em uma hospedagem HTTPS.
+2. Abra o endereço no Chrome.
+3. Toque em “Instalar no celular” ou escolha “Instalar app” no menu do Chrome.
+
+IPHONE
+1. Publique o conteúdo deste pacote em uma hospedagem HTTPS.
+2. Abra o endereço no Safari.
+3. Toque em Compartilhar e depois em “Adicionar à Tela de Início”.
+
+MÚSICA
+Os botões abrem “Um Amor Puro” nos serviços de música. Toque em reproduzir no
+Spotify ou YouTube Music. Android e iPhone não permitem que uma página comece
+a tocar áudio sem uma ação do usuário. A faixa não está incluída no pacote.
+
+Os arquivos da página, fotos, manifest, ícones e service worker precisam ser
+mantidos juntos no mesmo diretório da hospedagem.

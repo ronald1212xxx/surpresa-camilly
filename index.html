@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1c0d18">
+  <meta name="description" content="Uma surpresa feita com carinho para Camilly.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Para Camilly">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <title>Para Camilly 💖</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --night: #1c0d18;
+      --pink: #ff91b8;
+      --lilac: #f2c5d8;
+      --paper: rgba(49, 23, 39, .88);
+      --white: #fff8f2;
+      --gold: #f5d9aa;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100svh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(ellipse at 50% 12%, rgba(175, 75, 111, .34), transparent 52%),
+        radial-gradient(ellipse at 10% 88%, rgba(133, 74, 82, .18), transparent 45%),
+        linear-gradient(160deg, #321525, var(--night) 68%);
+      color: var(--white);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button { font: inherit; }
+
+    .scene {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      min-height: 100vh;
+      min-height: 100svh;
+      place-items: center;
+      padding: max(24px, env(safe-area-inset-top)) 18px max(24px, env(safe-area-inset-bottom));
+      isolation: isolate;
+    }
+
+    .stars, .floating-hearts {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #ffe5f3;
+      animation: twinkle 2.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: .2; transform: scale(.7); }
+      to { opacity: .95; transform: scale(1.5); }
+    }
+
+    .card {
+      width: min(100%, 560px);
+      padding: clamp(26px, 7vw, 48px) clamp(20px, 6vw, 42px);
+      border: 1px solid rgba(255, 214, 210, .24);
+      border-radius: 28px;
+      background: var(--paper);
+      box-shadow: 0 24px 90px rgba(0, 0, 0, .38), 0 0 55px rgba(226, 115, 137, .13);
+      text-align: center;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      animation: arrive .9s cubic-bezier(.2, .8, .2, 1) both;
+    }
+
+    @keyframes arrive {
+      from { opacity: 0; transform: translateY(18px) scale(.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--gold);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 0 auto 14px;
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: .24em;
+    }
+
+    .ornament::before, .ornament::after {
+      width: min(15vw, 70px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(245, 217, 170, .72));
+      content: "";
+    }
+
+    .ornament::after { transform: rotate(180deg); }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.25rem, 11vw, 4.2rem);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+    }
+
+    h1 span {
+      color: var(--pink);
+      text-shadow: 0 0 28px rgba(255, 119, 173, .35);
+    }
+
+    .intro {
+      max-width: 34ch;
+      margin: 18px auto 26px;
+      color: #f0dce1;
+      font-size: clamp(1rem, 4vw, 1.12rem);
+      line-height: 1.65;
+    }
+
+    .button {
+      min-height: 52px;
+      padding: 13px 22px;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(105deg, #ff94b8, #f2bd9f);
+      box-shadow: 0 8px 26px rgba(232, 117, 143, .23);
+      color: #391627;
+      font-weight: 800;
+      cursor: pointer;
+      touch-action: manipulation;
+      transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+    }
+
+    .button:hover { filter: brightness(1.08); box-shadow: 0 10px 34px rgba(232, 117, 143, .34); }
+    .button:active { transform: scale(.97); }
+    .button:focus-visible { outline: 3px solid white; outline-offset: 4px; }
+
+    .button.secondary {
+      margin-top: 16px;
+      border: 1px solid rgba(255, 220, 242, .35);
+      background: rgba(255, 255, 255, .08);
+      box-shadow: none;
+      color: var(--white);
+    }
+
+    .music-links {
+      display: inline-flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 18px;
+    }
+
+    .music-link {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 15px;
+      border: 1px solid rgba(245, 217, 170, .34);
+      border-radius: 999px;
+      background: rgba(255, 240, 225, .06);
+      color: #f8dfc8;
+      text-decoration: none;
+      touch-action: manipulation;
+      transition: background .18s ease, transform .18s ease;
+    }
+
+    .music-link:hover { background: rgba(255, 240, 225, .13); }
+    .music-link:active { transform: scale(.97); }
+    .music-link:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+
+    .music-link strong {
+      color: var(--gold);
+      font-weight: 650;
+    }
+
+    .music-status {
+      max-width: 38ch;
+      margin: -10px auto 14px;
+      color: #ead1d9;
+      font-size: .82rem;
+      line-height: 1.5;
+    }
+
+    .install-button {
+      min-height: 42px;
+      margin: 0 0 16px;
+      padding: 9px 15px;
+      border: 1px solid rgba(245, 217, 170, .34);
+      border-radius: 999px;
+      background: rgba(255, 240, 225, .06);
+      color: var(--white);
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .install-button:hover { background: rgba(255, 240, 225, .13); }
+    .install-button:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+
+    .install-dialog {
+      width: min(calc(100% - 32px), 430px);
+      padding: 26px;
+      border: 1px solid rgba(255, 214, 210, .28);
+      border-radius: 22px;
+      background: #321525;
+      color: var(--white);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .5);
+    }
+
+    .install-dialog::backdrop { background: rgba(13, 6, 12, .72); }
+
+    .install-dialog h2 {
+      margin: 0 0 12px;
+      color: var(--gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+    }
+
+    .install-dialog p { line-height: 1.65; }
+    .install-dialog .button { margin-top: 8px; }
+
+    .letter {
+      margin-top: 24px;
+      padding: 21px clamp(16px, 5vw, 28px);
+      border: 1px solid rgba(255, 215, 210, .16);
+      border-radius: 20px;
+      background: rgba(22, 10, 18, .42);
+      text-align: left;
+      animation: arrive .55s ease both;
+    }
+
+    .letter[hidden], .hug-button[hidden] { display: none; }
+
+    .letter-text {
+      margin: 0;
+      color: #fff4ee;
+      font-size: clamp(.98rem, 3.9vw, 1.06rem);
+      line-height: 1.8;
+      white-space: pre-wrap;
+    }
+
+    .signature {
+      margin: 18px 0 0;
+      color: var(--pink);
+      font-size: 1.16rem;
+      font-weight: 750;
+      text-align: right;
+    }
+
+    .album[hidden] { display: none; }
+
+    .album {
+      margin-top: 28px;
+      animation: arrive .7s ease both;
+    }
+
+    .album-heading {
+      margin: 0;
+      color: var(--gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.45rem, 6vw, 1.9rem);
+      font-weight: 500;
+    }
+
+    .album-intro {
+      margin: 8px 0 18px;
+      color: #e4cbd3;
+      font-size: .92rem;
+      line-height: 1.5;
+    }
+
+    .book {
+      position: relative;
+      width: min(100%, 410px);
+      margin: 0 auto;
+      padding: 12px;
+      border: 1px solid rgba(245, 217, 170, .44);
+      border-radius: 12px 20px 20px 12px;
+      background:
+        linear-gradient(90deg, rgba(101, 51, 59, .8) 0 9px, transparent 9px),
+        linear-gradient(135deg, #f5e6d0, #d9bfa5);
+      box-shadow: 0 16px 35px rgba(0, 0, 0, .32), inset 5px 0 8px rgba(91, 38, 46, .18);
+      perspective: 1200px;
+    }
+
+    .book-page {
+      overflow: hidden;
+      border: 1px solid rgba(121, 76, 70, .26);
+      border-radius: 5px 12px 12px 5px;
+      background: #fff9f1;
+      color: #573746;
+      transform-origin: left center;
+      backface-visibility: hidden;
+    }
+
+    .book-page.turn-out-next { animation: turn-out-next .24s ease-in forwards; }
+    .book-page.turn-out-prev { animation: turn-out-prev .24s ease-in forwards; }
+    .book-page.turn-in-next { animation: turn-in-next .28s ease-out both; }
+    .book-page.turn-in-prev { animation: turn-in-prev .28s ease-out both; }
+
+    @keyframes turn-out-next {
+      to { opacity: .25; transform: rotateY(-82deg); }
+    }
+    @keyframes turn-out-prev {
+      to { opacity: .25; transform: rotateY(82deg); }
+    }
+    @keyframes turn-in-next {
+      from { opacity: .25; transform: rotateY(82deg); }
+      to { opacity: 1; transform: rotateY(0); }
+    }
+    @keyframes turn-in-prev {
+      from { opacity: .25; transform: rotateY(-82deg); }
+      to { opacity: 1; transform: rotateY(0); }
+    }
+
+    .photo-frame {
+      position: relative;
+      display: grid;
+      height: clamp(245px, 76vw, 390px);
+      place-items: center;
+      overflow: hidden;
+      background: linear-gradient(145deg, #ead8d2, #d3b7a9);
+    }
+
+    .photo-frame::after {
+      position: absolute;
+      inset: 0;
+      border: 7px solid rgba(255, 250, 240, .44);
+      content: "";
+      pointer-events: none;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: photo-reveal .7s ease both;
+    }
+
+    @keyframes photo-reveal {
+      from { opacity: .55; transform: scale(1.045); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .page-caption {
+      min-height: 88px;
+      padding: 16px 16px 18px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1rem, 4.2vw, 1.12rem);
+      line-height: 1.55;
+    }
+
+    .page-count {
+      margin: 12px 0 8px;
+      color: #e8cbd2;
+      font-size: .84rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .album-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .page-button {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border: 1px solid rgba(245, 217, 170, .38);
+      border-radius: 50%;
+      background: rgba(255, 240, 225, .08);
+      color: var(--white);
+      font-size: 1.2rem;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .page-button:disabled { opacity: .38; cursor: default; }
+    .page-button:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+
+    .album-hint {
+      margin: 12px 0 0;
+      color: #cdb7bf;
+      font-size: .78rem;
+    }
+
+    .footer {
+      margin: 22px 0 0;
+      color: #d9bac5;
+      font-size: .82rem;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -40px;
+      z-index: 0;
+      color: var(--pink);
+      pointer-events: none;
+      animation: rise var(--duration, 7s) linear forwards;
+      filter: drop-shadow(0 0 9px rgba(255, 119, 173, .35));
+    }
+
+    @keyframes rise {
+      0% { opacity: 0; transform: translate3d(0, 0, 0) rotate(-12deg) scale(.75); }
+      12% { opacity: .85; }
+      85% { opacity: .72; }
+      100% { opacity: 0; transform: translate3d(var(--drift, 20px), -115vh, 0) rotate(24deg) scale(1.2); }
+    }
+
+    .burst {
+      position: fixed;
+      z-index: 5;
+      pointer-events: none;
+      animation: burst 1.7s ease-out forwards;
+      font-size: 1.5rem;
+    }
+
+    @keyframes burst {
+      from { opacity: 1; transform: translate(0, 0) scale(.5) rotate(0); }
+      to { opacity: 0; transform: translate(var(--x), var(--y)) scale(1.25) rotate(35deg); }
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+  <div class="floating-hearts" aria-hidden="true"></div>
+  <main class="scene">
+    <section class="card" aria-labelledby="title">
+      <div class="ornament" aria-hidden="true">✦ ❧ ✦</div>
+      <p class="eyebrow">Uma carta do meu coracao</p>
+      <h1 id="title">Para <span>Camilly</span> <span aria-hidden="true">♡</span></h1>
+      <p class="intro" id="intro">Para a pessoa que deixa meus dias mais bonitos. Tem uma mensagem feita só para você... 🌹</p>
+      <button class="install-button" id="install-button" type="button">＋ Instalar no celular</button>
+      <div class="music-links" aria-label="Ouvir Um Amor Puro">
+        <a class="music-link" href="https://open.spotify.com/search/Um%20Amor%20Puro%20Djavan" target="_blank" rel="noopener noreferrer">
+          ♫ Abrir no <strong>Spotify</strong>
+        </a>
+        <a class="music-link" href="https://music.youtube.com/search?q=Um%20Amor%20Puro%20Djavan" target="_blank" rel="noopener noreferrer">
+          ♫ Abrir no <strong>YouTube Music</strong>
+        </a>
+      </div>
+      <p class="music-status" id="music-status">Escolha um serviço e toque em “reproduzir”. O celular precisa de um toque seu para começar o áudio.</p>
+      <button class="button" id="open-button" type="button">Abrir minha surpresa 💌</button>
+
+      <article class="letter" id="letter" aria-live="polite" hidden>
+        <p class="letter-text" id="letter-text"></p>
+        <p class="signature" id="signature" hidden>Com todo meu amor ❤️</p>
+      </article>
+
+      <section class="album" id="album" aria-labelledby="album-title" hidden>
+        <h2 class="album-heading" id="album-title">Nosso pequeno livro de lembranças</h2>
+        <p class="album-intro">Cada página guarda um pedacinho feliz da nossa história. 📖</p>
+        <div class="book">
+          <div class="book-page" id="book-page" aria-live="polite">
+            <div class="photo-frame">
+              <img id="memory-photo" src="fotos_camilly/foto-01.jpg" alt="Uma lembrança especial de nós dois" fetchpriority="high">
+            </div>
+            <p class="page-caption" id="page-caption"></p>
+          </div>
+        </div>
+        <p class="page-count" id="page-count" aria-live="polite"></p>
+        <div class="album-controls" aria-label="Navegação do álbum">
+          <button class="page-button" id="previous-page" type="button" aria-label="Ver lembrança anterior">‹</button>
+          <span aria-hidden="true">♡</span>
+          <button class="page-button" id="next-page" type="button" aria-label="Ver próxima lembrança">›</button>
+        </div>
+        <p class="album-hint">Toque nas setas para virar as páginas</p>
+      </section>
+
+      <button class="button secondary hug-button" id="hug-button" type="button" hidden>
+        Quero um abraco virtual 🤗
+      </button>
+      <p class="footer">Feito especialmente para voce. 💖</p>
+      <p class="sr-only" id="announcement" aria-live="polite"></p>
+    </section>
+  </main>
+  <dialog class="install-dialog" id="install-dialog" aria-labelledby="install-title">
+    <h2 id="install-title">Leve esta surpresa com você 💌</h2>
+    <p id="install-instructions"></p>
+    <button class="button" id="close-install-dialog" type="button">Entendi</button>
+  </dialog>
+
+  <script>
+    (() => {
+      const declaration = [
+        "Camilly,",
+        "",
+        "Eu queria encontrar um jeito especial de te lembrar o quanto você é importante para mim. Seu carinho deixa meus dias mais leves, seu sorriso melhora qualquer momento e ter você por perto é um presente.",
+        "",
+        "Gosto de cada detalhe seu, das nossas conversas e de tudo que ainda vamos viver juntos. Obrigado por ser você e por fazer parte da minha vida.",
+        "",
+        "Eu te amo muito. Esta surpresa é só um jeitinho pequeno de dizer o tamanho do meu carinho por você. ❤️"
+      ].join("\n");
+
+      const stars = document.querySelector(".stars");
+      const heartsLayer = document.querySelector(".floating-hearts");
+      const openButton = document.querySelector("#open-button");
+      const hugButton = document.querySelector("#hug-button");
+      const letter = document.querySelector("#letter");
+      const letterText = document.querySelector("#letter-text");
+      const signature = document.querySelector("#signature");
+      const album = document.querySelector("#album");
+      const bookPage = document.querySelector("#book-page");
+      const memoryPhoto = document.querySelector("#memory-photo");
+      const pageCaption = document.querySelector("#page-caption");
+      const pageCount = document.querySelector("#page-count");
+      const previousPage = document.querySelector("#previous-page");
+      const nextPage = document.querySelector("#next-page");
+      const intro = document.querySelector("#intro");
+      const announcement = document.querySelector("#announcement");
+      const installButton = document.querySelector("#install-button");
+      const installDialog = document.querySelector("#install-dialog");
+      const installInstructions = document.querySelector("#install-instructions");
+      const closeInstallDialog = document.querySelector("#close-install-dialog");
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let opened = false;
+      let installPrompt = null;
+      let currentPage = 0;
+      let pageTurning = false;
+
+      const memories = [
+        {
+          photo: "fotos_camilly/foto-01.jpg",
+          position: "center 70%",
+          alt: "Nós dois juntinhos, sorrindo para a foto",
+          message: "Seu sorriso ao meu lado é um dos meus lugares favoritos no mundo. 💗"
+        },
+        {
+          photo: "fotos_camilly/foto-02.jpg",
+          alt: "Nós dois abraçados em um dia especial",
+          message: "Com você, até um dia simples vira uma lembrança linda para guardar. 🌷"
+        },
+        {
+          photo: "fotos_camilly/foto-03.jpg",
+          alt: "Nós dois com nosso cachorro em um momento divertido",
+          message: "Meu coração fica quentinho quando estamos juntinhos — ainda mais com nosso companheiro de quatro patas. 🐾"
+        },
+        {
+          photo: "fotos_camilly/foto-04.jpg",
+          alt: "Uma selfie nossa com sorrisos bem pertinho",
+          message: "Eu amo esse jeitinho leve e feliz que aparece quando estamos juntos. ✨"
+        },
+        {
+          photo: "fotos_camilly/foto-05.jpg",
+          alt: "Um momento carinhoso entre nós dois",
+          message: "Seu abraço tem um jeito especial de fazer tudo ficar bem. ❤️"
+        },
+        {
+          photo: "fotos_camilly/foto-06.jpg",
+          alt: "Nós dois sorrindo lado a lado",
+          message: "Quero continuar colecionando sorrisos, passeios e histórias com você. 🌼"
+        },
+        {
+          photo: "fotos_camilly/foto-07.jpg",
+          alt: "Uma foto nossa em um passeio",
+          message: "O melhor do passeio é ter você comigo. O resto vira cenário. 🌅"
+        },
+        {
+          photo: "fotos_camilly/foto-08.jpg",
+          alt: "Nós dois juntinhos em uma selfie",
+          message: "Olho para essa foto e só consigo pensar: que sorte a minha ter você. 💞"
+        },
+        {
+          photo: "fotos_camilly/foto-09.jpg",
+          alt: "Uma lembrança nossa cheia de carinho",
+          message: "Em cada lembrança bonita, tem um pedacinho do carinho que sinto por você. 💌"
+        },
+        {
+          photo: "fotos_camilly/foto-10.jpg",
+          alt: "Nós dois compartilhando um momento carinhoso",
+          message: "Que venham muitas páginas novas para a nossa história. Te amo muito. 📖❤️"
+        }
+      ];
+
+      function renderMemory() {
+        const memory = memories[currentPage];
+        memoryPhoto.src = memory.photo;
+        memoryPhoto.alt = memory.alt;
+        memoryPhoto.style.objectPosition = memory.position || "center";
+        pageCaption.textContent = memory.message;
+        pageCount.textContent = `Lembrança ${currentPage + 1} de ${memories.length}`;
+        previousPage.disabled = currentPage === 0 || pageTurning;
+        nextPage.disabled = currentPage === memories.length - 1 || pageTurning;
+      }
+
+      function turnPage(direction) {
+        if (pageTurning) return;
+        const nextIndex = currentPage + direction;
+        if (nextIndex < 0 || nextIndex >= memories.length) return;
+        currentPage = nextIndex;
+        renderMemory();
+        if (reduceMotion) return;
+
+        pageTurning = true;
+        renderMemory();
+        const outClass = direction > 0 ? "turn-out-next" : "turn-out-prev";
+        const inClass = direction > 0 ? "turn-in-next" : "turn-in-prev";
+        bookPage.classList.add(outClass);
+        window.setTimeout(() => {
+          const memory = memories[currentPage];
+          memoryPhoto.src = memory.photo;
+          memoryPhoto.alt = memory.alt;
+          memoryPhoto.style.objectPosition = memory.position || "center";
+          pageCaption.textContent = memory.message;
+          pageCount.textContent = `Lembrança ${currentPage + 1} de ${memories.length}`;
+          bookPage.classList.remove(outClass);
+          bookPage.classList.add(inClass);
+          window.setTimeout(() => {
+            bookPage.classList.remove(inClass);
+            pageTurning = false;
+            renderMemory();
+          }, 300);
+        }, 250);
+      }
+
+      renderMemory();
+      previousPage.addEventListener("click", () => turnPage(-1));
+      nextPage.addEventListener("click", () => turnPage(1));
+
+      window.addEventListener("beforeinstallprompt", (event) => {
+        event.preventDefault();
+        installPrompt = event;
+      });
+
+      function showInstallInstructions() {
+        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent)
+          || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+        installInstructions.textContent = isIOS
+          ? "No Safari, toque em Compartilhar e depois em “Adicionar à Tela de Início”. As fotos e o álbum também ficam disponíveis sem internet depois que a página for instalada e aberta uma vez."
+          : "No Chrome ou navegador compatível, use “Instalar app” ou “Adicionar à tela inicial” no menu do navegador. Depois da instalação, as fotos e o álbum ficam disponíveis sem internet.";
+        if (typeof installDialog.showModal === "function") {
+          installDialog.showModal();
+        } else {
+          window.alert(installInstructions.textContent);
+        }
+      }
+
+      installButton.addEventListener("click", async () => {
+        if (!installPrompt) {
+          showInstallInstructions();
+          return;
+        }
+
+        installPrompt.prompt();
+        await installPrompt.userChoice;
+        installPrompt = null;
+      });
+
+      closeInstallDialog.addEventListener("click", () => installDialog.close());
+      installDialog.addEventListener("click", (event) => {
+        if (event.target === installDialog) installDialog.close();
+      });
+
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./service-worker.js").catch((error) => {
+            console.error("Não foi possível preparar o modo offline:", error);
+          });
+        });
+      }
+
+      let touchStartX = null;
+      bookPage.addEventListener("touchstart", (event) => {
+        touchStartX = event.changedTouches[0].clientX;
+      }, { passive: true });
+      bookPage.addEventListener("touchend", (event) => {
+        if (touchStartX === null) return;
+        const deltaX = event.changedTouches[0].clientX - touchStartX;
+        touchStartX = null;
+        if (Math.abs(deltaX) > 45) turnPage(deltaX < 0 ? 1 : -1);
+      }, { passive: true });
+
+      for (let i = 0; i < 44; i += 1) {
+        const star = document.createElement("i");
+        star.className = "star";
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.animationDelay = `${Math.random() * 3}s`;
+        star.style.opacity = `${0.25 + Math.random() * 0.65}`;
+        stars.append(star);
+      }
+
+      function addHeart() {
+        if (reduceMotion || document.hidden) return;
+        const heart = document.createElement("span");
+        heart.className = "heart";
+        heart.textContent = Math.random() > 0.25 ? "♥" : "♡";
+        heart.style.left = `${Math.random() * 100}vw`;
+        heart.style.fontSize = `${14 + Math.random() * 20}px`;
+        heart.style.setProperty("--duration", `${6 + Math.random() * 5}s`);
+        heart.style.setProperty("--drift", `${-45 + Math.random() * 90}px`);
+        heartsLayer.append(heart);
+        heart.addEventListener("animationend", () => heart.remove(), { once: true });
+      }
+
+      setInterval(addHeart, 650);
+
+      function typeDeclaration(index) {
+        if (index >= declaration.length) {
+          signature.hidden = false;
+          announcement.textContent = "A declaração terminou. Camilly, você é muito especial.";
+          return;
+        }
+        letterText.textContent += declaration[index];
+        const char = declaration[index];
+        const delay = char === "." || char === "," ? 120 : char === "\n" ? 190 : 24;
+        window.setTimeout(() => typeDeclaration(index + 1), reduceMotion ? 0 : delay);
+      }
+
+      function celebrate() {
+        if (reduceMotion) return;
+        const symbols = ["💖", "💕", "✨", "💗", "♡", "🌸"];
+        for (let i = 0; i < 26; i += 1) {
+          const piece = document.createElement("span");
+          piece.className = "burst";
+          piece.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+          piece.style.left = `${42 + Math.random() * 16}vw`;
+          piece.style.top = `${35 + Math.random() * 25}vh`;
+          piece.style.setProperty("--x", `${-150 + Math.random() * 300}px`);
+          piece.style.setProperty("--y", `${-180 + Math.random() * 300}px`);
+          document.body.append(piece);
+          piece.addEventListener("animationend", () => piece.remove(), { once: true });
+        }
+      }
+
+      openButton.addEventListener("click", () => {
+        if (opened) return;
+        opened = true;
+        openButton.disabled = true;
+        openButton.textContent = "Surpresa aberta 💗";
+        intro.textContent = "Cada palavra aqui foi escolhida pensando em voce. ❤️";
+        letter.hidden = false;
+        album.hidden = false;
+        hugButton.hidden = false;
+        celebrate();
+        typeDeclaration(0);
+        window.setTimeout(() => album.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" }), 300);
+      });
+
+      hugButton.addEventListener("click", () => {
+        intro.textContent = "Se eu pudesse, agora te dava o abraco mais apertado do mundo, Camilly! 🤗💞";
+        celebrate();
+        if (navigator.vibrate && !reduceMotion) navigator.vibrate([35, 30, 55]);
+        window.setTimeout(() => {
+          intro.textContent = "Você é muito especial para mim. ❤️";
+        }, 2500);
+      });
+    })();
+  </script>
+</body>
+</html>
